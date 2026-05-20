@@ -1,0 +1,5 @@
+services:
+  api:
+    volumes:
+      - .:/app
+    command: ["node", "server.js"]
