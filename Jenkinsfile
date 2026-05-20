@@ -11,7 +11,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/NitinSimhadri/DOCKER_JENKINS_ANSIBLE.git'
+                git branch: 'main', url: 'https://github.com/NitinSimhadri/DOCKER_JENKINS_ANSIBLE.git'
             }
         }
 
