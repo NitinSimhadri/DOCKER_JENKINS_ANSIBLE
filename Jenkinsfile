@@ -1,14 +1,12 @@
 pipeline {
-
     agent any
 
     environment {
         IMAGE_NAME = "nitin52050/node-app"
-        IMAGE_TAG = "v1"
+        IMAGE_TAG   = "v1"
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/NitinSimhadri/DOCKER_JENKINS_ANSIBLE.git'
@@ -40,7 +38,6 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                 }
             }
@@ -49,6 +46,12 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 sh 'docker push $IMAGE_NAME:$IMAGE_TAG'
+            }
+        }
+
+        stage('Deploy using Ansible') {
+            steps {
+                sh 'ansible-playbook -i inventory deploy_container.yml'
             }
         }
     }
