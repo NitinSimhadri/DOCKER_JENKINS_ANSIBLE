@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Node.js App Running on EC2 with Docker and ansible");
+  res.send("Node.js App Running on EC2 with Docker and ansible project");
 });
 
 app.get("/health", (req, res) => {
